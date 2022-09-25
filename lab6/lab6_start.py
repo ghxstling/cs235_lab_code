@@ -25,12 +25,31 @@ print(*response, sep='\n')
 
 
 # Insert a comment to Article id=10 by 'fmercury'
+cursor.execute(
+    f"INSERT INTO comments (id, user_id, article_id, comment, timestamp) \
+        VALUES (4, 2, 10, 'pog champ', datetime());"
+)
+
 # Insert a comment to Article id=20 by 'fmercury'
+cursor.execute(
+    f"INSERT INTO comments (id, user_id, article_id, comment, timestamp) \
+        VALUES (5, 2, 20, 'not so pog champ', datetime());"
+)
 
 # Delete Article id=50
+cursor.execute(
+    f"DELETE FROM articles \
+        WHERE id == 50;"
+)
 
 # Print all comments by 'fmercury'
+response = cursor.execute(
+    "SELECT * FROM comments \
+        LEFT JOIN users ON comments.user_id = users.id;"
+).fetchall()
+print(*response, sep='\n')
 
 ################################################################################
 
+connection.commit()
 connection.close()
