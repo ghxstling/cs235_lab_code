@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href={{ url_for("static", filename="css/styles.css")
-    }}>
-  </head>
-  <body>
-    <h1>This tool computes factorial (n!)</h1>
-    <p>{{ input }}! = {{ factorial }}</p>
-  </body>
+<html lang="en">
+    <meta charset="UTF-8">
+    <head>
+        <link href="/static/css/styles.css" rel="stylesheet">
+        <title>Factorial Calculator</title>
+    </head>
+
+    <body>
+        <h1>This tool calculates factorial (n!)</h1>
+        <p>{{ input }}! = {{ factorial }}</p>
+    </body>
 </html>
