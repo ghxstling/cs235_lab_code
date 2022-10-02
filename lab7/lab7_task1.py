@@ -39,6 +39,10 @@ comments_table = Table(
     meta,
     Column('id', Integer, primary_key=True),
     # TODO: Add your code here
+    Column('user_id', Integer),
+    Column('article_id', Integer),
+    Column('comment', String),
+    Column('timestamp', Date)
 )
 connection = engine.connect()
 
@@ -56,21 +60,24 @@ def select_all():
         print(article)
 
 
-def insert():
+def insert(user_id, article_id, comment):
     """Insert an article."""
     insert = comments_table.insert().values(
-        # TODO: Add your code here
+        user_id=user_id,
+        article_id=article_id,
+        comment=comment,
+        timestamp=datetime.datetime.now()
     )
     print('Query:\n', insert)
     connection.execute(insert)
 
 
-def update(comment_id):
+def update(comment_id, new_comment):
     """Update the title where id == 1."""
     update = comments_table.update() \
         .where(comments_table.c.id == comment_id) \
         .values(
-            # TODO: Add your code here
+            comment=new_comment
         )
     print('Query:\n', update)
     connection.execute(update)
@@ -93,14 +100,25 @@ def delete(comment_id):
 
 if __name__ == '__main__':
     """Uncomment the functions below one at a time."""
-    select_all()
+    # select_all()
 
-    # insert()
+    # insert(
+    #     user_id=2,
+    #     article_id=4,
+    #     comment='POG CHAMP'
+    # )
+
+    # insert(
+    #     user_id=2,
+    #     article_id=4,
+    #     comment='WOOOOOOOOOO'
+    # )
 
     # update(
-    #     # TODO: Add parameter here
+    #     comment_id=1,
+    #     new_comment='lmfaoooo'
     # )
 
     # delete(
-    #     # TODO: Add parameter here
+    #     comment_id=4
     # )
